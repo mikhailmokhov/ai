@@ -1,48 +1,34 @@
-export class Sigmoid {
+import {Layer} from './lib/layer';
+import {Cost} from './lib/cost';
 
-    constructor(sigmoids) {
-        if (sigmoids) {
-            this.inputs = [];
-            sigmoids.forEach(sigmoid => this.inputs.push(new Input(sigmoid)));
-        }
-        this.output = 0;
-        this.bias = 0;
-    }
+function main() {
 
-    calculate() {
-        let inputsSum = 0;
-        this.inputs.forEach(input => inputsSum += input.sigmoid.output * input.weight);
-        this.output = 1 / (1 + Math.exp(-inputsSum - this.bias));
-    }
 
+    // 4 sigmoids with no inputs
+    const firstLayer = new Layer(4);
+    // 16 sigmoids with 4 inputs each connected to the firstLayer sigmoid
+    const secondLayer = new Layer(16, firstLayer.sigmoids);
+    // connect cost calculator to the last layer
+    const cost = new Cost(secondLayer.sigmoids);
+
+    secondLayer.calculate();
+
+    cost.calculate([0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]);
+
+    console.log('cost1 = ' + cost.last);
+
+    cost.calculate([0.5, 0.5, 0.5, 0.9, 0.5, 0.8, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]);
+
+    console.log('cost2 = ' + cost.last);
+
+    cost.calculate([0.5, 0.5, 0.5, 0.9, 0.5, 0.5, 0.9, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]);
+
+    console.log('cost3 = ' + cost.last);
+
+    console.log('average cost = ' + cost.average);
+
+    console.log('firstLayer' + firstLayer.toString());
+    console.log('secondLayer' + secondLayer.toString());
 }
 
-
-export class Input {
-
-    constructor(sigmoid) {
-        this.sigmoid = sigmoid || null; // Reference to other layer sigmoid
-        this.weight = 0;
-    }
-}
-
-export class Layer {
-
-    constructor(numberOfSigmoids, connectToSigmoids) {
-        this.sigmoids = [];
-        for (let i = 0; i < numberOfSigmoids; i++) {
-            this.sigmoids.push(new Sigmoid(connectToSigmoids));
-        }
-    }
-
-    calculate() {
-        this.sigmoids.forEach(sigmoid => sigmoid.calculate());
-    }
-
-    toString() {
-        let result = []
-        this.sigmoids.forEach(sigmoid => result.push(sigmoid.output));
-        return '(' + result.join(',') + ')';
-    }
-
-}
+main();

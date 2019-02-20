@@ -2,7 +2,7 @@
   "name": "ai",
   "version": "0.0.1",
   "description": "A proof of concept ai network",
-  "main": "index.mjs",
+  "main": "lib/index.mjs",
   "scripts": {
     "test": "test"
   },
