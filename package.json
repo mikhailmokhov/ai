@@ -1,8 +1,8 @@
 {
   "name": "ai",
   "version": "0.0.1",
-  "description": "A proof of concept package describing simple ai network",
-  "main": "index.js",
+  "description": "A proof of concept ai network",
+  "main": "index.mjs",
   "scripts": {
     "test": "test"
   },
