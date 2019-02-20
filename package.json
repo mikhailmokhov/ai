@@ -1,0 +1,19 @@
+{
+  "name": "ai",
+  "version": "0.0.1",
+  "description": "A proof of concept package describing simple ai network",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steel8rat/ai.git"
+  },
+  "author": "Mikhail Mokhov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steel8rat/ai/issues"
+  },
+  "homepage": "https://github.com/steel8rat/ai#readme"
+}
