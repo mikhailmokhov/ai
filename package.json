@@ -2,7 +2,7 @@
   "name": "ai",
   "version": "0.0.1",
   "description": "A proof of concept ai network",
-  "main": "lib/index.mjs",
+  "main": "src/lib/index.mjs",
   "scripts": {
     "test": "test"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/steel8rat/ai/issues"
   },
-  "homepage": "https://github.com/steel8rat/ai#readme"
+  "homepage": "https://github.com/steel8rat/ai#readme",
+  "dependencies": {
+    "typescript": "^3.3.3333"
+  }
 }

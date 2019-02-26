@@ -1,5 +1,8 @@
-class Output {
+import Sigmoid from "./sigmoid";
 
+class Output {
+    source: Sigmoid;
+    desiredValue: number;
     constructor(sigmoid) {
         this.source = sigmoid;
         this.desiredValue = 0;
@@ -10,8 +13,9 @@ class Output {
     }
 }
 
-export class Cost {
-
+export default class Cost {
+    costs: number[];
+    outputs: Output[];
     constructor(sigmoids) {
         this.costs = [];
         this.outputs = [];
@@ -37,10 +41,16 @@ export class Cost {
         return this.costs[this.costs.length - 1];
     }
 
-    get average() {
+    get quadratic() {
         let sum = 0;
         this.costs.forEach(cost => sum += Math.pow(cost, 2));
         return 1 / (2 * this.costs.length) * sum;
+    }
+
+    get average() {
+        let sum = 0;
+        this.costs.forEach(cost => sum += cost);
+        return sum / this.costs.length;
     }
 
 }
